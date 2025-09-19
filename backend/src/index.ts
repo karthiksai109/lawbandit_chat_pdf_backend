@@ -7,6 +7,21 @@ import express from "express";
 
 import cors from "cors";
 
+
+const allowedOrigins = [
+  "http://localhost:3000", // local dev
+  "https://lawbandit-chat-pdf-frontend-yjnc.vercel.app", // your Vercel frontend
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
+
 import uploadRouter from "./routes/upload.js";
 import askRouter from "./routes/ask.js";
 import { errorHandler } from "./middleware/errorHandler.js";
