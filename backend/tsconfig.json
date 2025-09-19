@@ -6,7 +6,9 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "strict": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmitOnError": false,     // ⬅️ still emit JS even if errors
+    "isolatedModules": true     // ⬅️ treat each file separately
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
