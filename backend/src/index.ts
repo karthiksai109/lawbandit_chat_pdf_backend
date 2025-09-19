@@ -1,16 +1,19 @@
-
 import dotenv from "dotenv";
 dotenv.config();
-console.log("Groq API Key:", process.env.GROQ_API_KEY);
 
 import express from "express";
-
 import cors from "cors";
 
+import uploadRouter from "./routes/upload.js";
+import askRouter from "./routes/ask.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
+const app = express();   // 👈 initialize app first
+
+// Explicit CORS setup
 const allowedOrigins = [
-  "http://localhost:3000", // local dev
-  "https://lawbandit-chat-pdf-frontend-yjnc.vercel.app", // your Vercel frontend
+  "http://localhost:3000", 
+  "https://lawbandit-chat-pdf-frontend-yjnc.vercel.app"
 ];
 
 app.use(
@@ -21,15 +24,6 @@ app.use(
   })
 );
 
-
-import uploadRouter from "./routes/upload.js";
-import askRouter from "./routes/ask.js";
-import { errorHandler } from "./middleware/errorHandler.js";
-
-
-
-const app = express();
-app.use(cors());
 app.use(express.json());
 
 // Routes
