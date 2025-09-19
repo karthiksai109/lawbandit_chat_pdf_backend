@@ -7,7 +7,10 @@ const upload = multer({ dest: "uploads/" });
 
 router.post("/", upload.single("file"), async (req, res, next) => {
   try {
-    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
     const id = await uploadFile(req.file);
     res.json({ id });
   } catch (err) {
@@ -15,4 +18,4 @@ router.post("/", upload.single("file"), async (req, res, next) => {
   }
 });
 
-module.exports = router;   // ✅ Export router properly for require()
+module.exports = router;   // ✅ Export router for require()

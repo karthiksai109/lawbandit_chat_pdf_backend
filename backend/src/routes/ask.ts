@@ -4,26 +4,26 @@ const { answerWithContext } = require("../services/llm");
 
 const router = express.Router();
 
-router.post("/", async (req: any, res: any, next: any) => {
+router.post("/", async (req, res, next) => {
   try {
     const { id, question } = req.body;
     if (!id || !question) {
       return res.status(400).json({ error: "Missing id or question" });
     }
 
-    // 🔍 Retrieve the document chunks (vector store)
+    // Retrieve document chunks
     const chunks = getDoc(id);
     if (!chunks) {
       return res.status(404).json({ error: "Document not found" });
     }
 
-    // Just take the whole text for now (basic)
-    const context = chunks.map((c: any) => ({
+    // Use all chunks as context (for now)
+    const context = chunks.map((c) => ({
       text: c.text,
       page: c.page,
     }));
 
-    // 🧠 Ask the LLM
+    // Call the LLM with context
     const answer = await answerWithContext(question, context);
 
     res.json({ answer });
@@ -32,4 +32,4 @@ router.post("/", async (req: any, res: any, next: any) => {
   }
 });
 
-module.exports = router;
+module.exports = router;   // ✅ Export router for require()
