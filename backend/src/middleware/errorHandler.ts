@@ -1,6 +1,11 @@
-function errorHandler(err: any, req: any, res: any, next: any) {
-  console.error(err.stack || err);
-  res.status(500).json({ error: "Something broke!" });
-}
+import { Request, Response, NextFunction } from "express";
 
-module.exports = { errorHandler };
+export function errorHandler(
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  console.error("❌ Error:", err);
+  res.status(500).json({ error: "Internal Server Error" });
+}

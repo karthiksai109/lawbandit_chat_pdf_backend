@@ -1,10 +1,10 @@
-const store = new Map();
+const store = new Map<string, any[]>();
 
-function saveDoc(docId: string, chunks: any[]) {
+export function saveDoc(docId: string, chunks: any[]) {
   store.set(docId, chunks);
 }
 
-function getDoc(docId: string) {
+export function getDoc(docId: string) {
   return store.get(docId) ?? [];
 }
 
@@ -18,7 +18,7 @@ function cosine(a: number[], b: number[]) {
   return dot / (Math.sqrt(na) * Math.sqrt(nb) + 1e-8);
 }
 
-function topK(docId: string, queryVec: number[], k = 5) {
+export function topK(docId: string, queryVec: number[], k = 5) {
   const chunks = getDoc(docId);
   return chunks
     .map((c: any) => ({ c, score: cosine(c.vector, queryVec) }))
@@ -26,5 +26,3 @@ function topK(docId: string, queryVec: number[], k = 5) {
     .slice(0, k)
     .map(x => x.c);
 }
-
-module.exports = { saveDoc, getDoc, topK };

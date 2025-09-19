@@ -1,12 +1,12 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
+import dotenv from "dotenv";
+dotenv.config(); // ✅ Load .env first
 
-dotenv.config();
+import express from "express";
+import cors from "cors";
 
-const uploadRouter = require("./routes/upload");
-const askRouter = require("./routes/ask");
-const { errorHandler } = require("./middleware/errorHandler");
+import uploadRouter from "./routes/upload";
+import askRouter from "./routes/ask";
+import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
 app.use(cors());

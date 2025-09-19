@@ -1,5 +1,4 @@
-// backend/src/services/embed.ts
-const { pipeline } = require("@xenova/transformers");
+import { pipeline } from "@xenova/transformers";
 
 let embedder: any;
 
@@ -12,21 +11,23 @@ async function getEmbedder() {
   return embedder;
 }
 
-async function embedTexts(texts: string[]): Promise<number[][]> {
+export async function embedTexts(texts: string[]): Promise<number[][]> {
   const model = await getEmbedder();
   const vectors: number[][] = [];
 
   for (const text of texts) {
     const output = await model(text);
-    // flatten tensor into JS array
     vectors.push(Array.from(output.data[0]));
   }
   return vectors;
 }
 
-async function embedText(text: string): Promise<number[]> {
+export async function embedText(text: string): Promise<number[]> {
   const [vec] = await embedTexts([text]);
   return vec;
 }
 
-module.exports = { embedTexts, embedText };
+export async function uploadFile(file: Express.Multer.File) {
+  // mock store: just use filename as ID
+  return file.filename;
+}

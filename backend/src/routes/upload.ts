@@ -1,6 +1,6 @@
-const express = require("express");
-const multer = require("multer");
-const { uploadFile } = require("../services/embed");
+import express from "express";
+import multer from "multer";
+import { uploadFile } from "../services/embed";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
@@ -18,4 +18,4 @@ router.post("/", upload.single("file"), async (req, res, next) => {
   }
 });
 
-module.exports = router;   // ✅ Export router for require()
+export default router;
