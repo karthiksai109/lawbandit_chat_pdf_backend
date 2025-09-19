@@ -1,5 +1,5 @@
 import fs from "fs";
-import pdfParse from "pdf-parse";
+import pdfParse from "pdf-parse-fixed";
 import { saveDoc, Chunk } from "./vector.js";
 import { pipeline } from "@xenova/transformers";
 
