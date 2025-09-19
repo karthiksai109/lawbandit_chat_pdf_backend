@@ -28,6 +28,6 @@ export async function embedText(text: string): Promise<number[]> {
 }
 
 export async function uploadFile(file: Express.Multer.File) {
-  // mock store: just use filename as ID
+  // TODO: implement real storage
   return file.filename;
 }

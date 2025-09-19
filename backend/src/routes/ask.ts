@@ -1,6 +1,6 @@
 import express from "express";
-import { getDoc } from "../services/vector";
-import { answerWithContext } from "../services/llm";
+import { getDoc } from "../services/vector.js";
+import { answerWithContext } from "../services/llm.js";
 
 const router = express.Router();
 

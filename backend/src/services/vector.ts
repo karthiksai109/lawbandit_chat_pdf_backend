@@ -1,4 +1,4 @@
-const store = new Map<string, any[]>();
+const store = new Map();
 
 export function saveDoc(docId: string, chunks: any[]) {
   store.set(docId, chunks);
