@@ -12,17 +12,18 @@ const app = express();   // 👈 initialize app first
 
 // Explicit CORS setup
 const allowedOrigins = [
-  "http://localhost:3000", 
-  "https://lawbandit-chat-pdf-frontend-yjnc.vercel.app"
+  "http://localhost:3000",
+  "https://lawbandit-chat-pdf-frontend-ctxtc.vercel.app", // 👈 your Vercel frontend URL
 ];
 
 app.use(
   cors({
-    origin: "*",   // 👈 allow all origins for now
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
 );
+
 
 app.use(express.json());
 
